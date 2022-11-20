@@ -19,10 +19,6 @@ export const Login = () => {
     handleSubmit,
     formState: { errors, isValid },
   } = useForm({
-    defaultValues: {
-      email: 'test@test.ru',
-      password: '123',
-    },
     mode: 'onChange',
   });
 

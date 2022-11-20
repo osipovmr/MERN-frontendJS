@@ -9,7 +9,7 @@ import Button from '@mui/material/Button';
 import Avatar from '@mui/material/Avatar';
 
 import styles from './Login.module.scss';
-import { fetchAuth, fetchRegister, selectIsAuth } from '../../redux/slices/auth';
+import { fetchRegister, selectIsAuth } from '../../redux/slices/auth';
 
 export const Registration = () => {
   const isAuth = useSelector(selectIsAuth);
@@ -19,11 +19,6 @@ export const Registration = () => {
     handleSubmit,
     formState: { errors, isValid },
   } = useForm({
-    defaultValues: {
-      fullName: 'Вася Пупкин',
-      email: 'vasya@test.ru',
-      password: '1234',
-    },
     mode: 'onChange',
   });
 
