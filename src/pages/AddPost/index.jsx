@@ -15,10 +15,8 @@ export const AddPost = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const isAuth = useSelector(selectIsAuth);
-  const [isLoading, setLoading] = React.useState(false);
   const [text, setText] = React.useState('');
   const [title, setTitle] = React.useState('');
-  const [tags, setTags] = React.useState('');
   const [imageUrl, setImageUrl] = React.useState('');
   const inputFileRef = React.useRef(null);
 
@@ -47,12 +45,9 @@ export const AddPost = () => {
 
   const onSubmit = async () => {
     try {
-      setLoading(true);
-
       const fields = {
         title,
         imageUrl,
-        tags,
         text,
       };
 
@@ -77,7 +72,6 @@ export const AddPost = () => {
           setTitle(data.title);
           setText(data.text);
           setImageUrl(data.imageUrl);
-          setTags(data.tags.join(','));
         })
         .catch((err) => {
           console.warn(err);
@@ -118,7 +112,7 @@ export const AddPost = () => {
           </Button>
           <img
             className={styles.image}
-            src={`${process.env.REACT_APP_API_URL}${imageUrl}`}
+            src={`http://localhost:4444${imageUrl}`}
             alt="Uploaded"
           />
         </>
@@ -126,21 +120,11 @@ export const AddPost = () => {
       <br />
       <br />
       <TextField
-        value={fields.title}
-        onChange={(e) => setFieldValue('title', e.target.value)}
         classes={{ root: styles.title }}
         variant="standard"
         placeholder="Заголовок статьи..."
         value={title}
         onChange={(e) => setTitle(e.target.value)}
-        fullWidth
-      />
-      <TextField
-        value={tags}
-        onChange={(e) => setTags(e.target.value)}
-        classes={{ root: styles.tags }}
-        variant="standard"
-        placeholder="Тэги"
         fullWidth
       />
       <SimpleMDE className={styles.editor} value={text} onChange={onChange} options={options} />
