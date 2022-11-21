@@ -2,12 +2,12 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from '../../axios';
 
 export const fetchPosts = createAsyncThunk('posts/fetchPosts', async () => {
-  const { data } = await axios.get('/posts');
+  const { data } = await axios.get('/todo');
   return data;
 });
 
 export const fetchRemovePost = createAsyncThunk('posts/fetchRemovePost', async (id) =>
-  axios.delete(`/posts/${id}`),
+  axios.delete(`/todo/${id}`),
 );
 
 const initialState = {
@@ -26,7 +26,7 @@ const postsSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: {
-    // Получение статей
+
     [fetchPosts.pending]: (state) => {
       state.posts.items = [];
       state.posts.status = 'loading';
@@ -40,7 +40,7 @@ const postsSlice = createSlice({
       state.posts.status = 'error';
     },
 
-    // Удаление статьи
+
     [fetchRemovePost.pending]: (state, action) => {
       state.posts.items = state.posts.items.filter((obj) => obj._id !== action.meta.arg);
     },

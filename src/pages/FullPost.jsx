@@ -11,14 +11,14 @@ export const FullPost = () => {
 
   React.useEffect(() => {
     axios
-      .get(`/posts/${id}`)
+      .get(`/todo/${id}`)
       .then((res) => {
         setData(res.data);
         setLoading(false);
       })
       .catch((err) => {
         console.warn(err);
-        alert('Ошибка при получении статьи');
+        alert('Ошибка при получении записи');
       });
   }, []);
 

@@ -52,22 +52,22 @@ export const AddPost = () => {
       };
 
       const { data } = isEditing
-        ? await axios.patch(`/posts/${id}`, fields)
-        : await axios.post('/posts', fields);
+        ? await axios.patch(`/todo/${id}`, fields)
+        : await axios.post('/todo', fields);
 
       const _id = isEditing ? id : data._id;
 
-      navigate(`/posts/${_id}`);
+      navigate(`/todo/${_id}`);
     } catch (err) {
       console.warn(err);
-      alert('Ошибка при создании статьи!');
+      alert('Ошибка при создании записи!');
     }
   };
 
   React.useEffect(() => {
     if (id) {
       axios
-        .get(`/posts/${id}`)
+        .get(`/todo/${id}`)
         .then(({ data }) => {
           setTitle(data.title);
           setText(data.text);
@@ -75,7 +75,7 @@ export const AddPost = () => {
         })
         .catch((err) => {
           console.warn(err);
-          alert('Ошибка при получении статьи!');
+          alert('Ошибка при получении записи!');
         });
     }
   }, []);
@@ -122,7 +122,7 @@ export const AddPost = () => {
       <TextField
         classes={{ root: styles.title }}
         variant="standard"
-        placeholder="Заголовок статьи..."
+        placeholder="Название задачи"
         value={title}
         onChange={(e) => setTitle(e.target.value)}
         fullWidth

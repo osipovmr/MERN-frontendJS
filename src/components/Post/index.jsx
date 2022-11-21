@@ -27,7 +27,7 @@ export const Post = ({
   }
 
   const onClickRemove = () => {
-    if (window.confirm('Вы действительно хотите удалить статью?')) {
+    if (window.confirm('Вы действительно хотите удалить запись?')) {
       dispatch(fetchRemovePost(id));
     }
   };
@@ -36,7 +36,7 @@ export const Post = ({
     <div className={clsx(styles.root, { [styles.rootFull]: isFullPost })}>
       {isEditable && (
         <div className={styles.editButtons}>
-          <Link to={`/posts/${id}/edit`}>
+          <Link to={`/todo/${id}/edit`}>
             <IconButton color="primary">
               <EditIcon />
             </IconButton>
@@ -57,7 +57,7 @@ export const Post = ({
         <UserInfo {...user} additionalText={createdAt} />
         <div className={styles.indention}>
           <h2 className={clsx(styles.title, { [styles.titleFull]: isFullPost })}>
-            {isFullPost ? title : <Link to={`/posts/${id}`}>{title}</Link>}
+            {isFullPost ? title : <Link to={`/todo/${id}`}>{title}</Link>}
           </h2>
           {children && <div className={styles.content}>{children}</div>}
           <ul className={styles.postDetails}> 
